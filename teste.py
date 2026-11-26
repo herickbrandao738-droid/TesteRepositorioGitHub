@@ -140,3 +140,4 @@ def iniciar_sistema():
 # Ponto de entrada do programa
 if __name__ == "__main__":
     iniciar_sistema()
+    #oi
