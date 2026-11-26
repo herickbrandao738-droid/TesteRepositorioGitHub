@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentação Técnica | Sistema de Cadastro de Motores - Centro WEG</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Fonte limpa e técnica -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Cabeçalho Institucional -->
+    <header class="main-header">
+        <div class="container header-content">
+            <div class="brand-badge">
+                <span class="weg-logo">WEG</span>
+                <span class="divider">|</span>
+                <span class="senai-tag">SENAI • Centro WEG</span>
+            </div>
+            <h1>Sistema de Cadastro de Motores em Python</h1>
+            <p class="subtitle">Documentação de arquitetura monolítica em memória para prototipagem e testes industriais</p>
+        </div>
+    </header>
+
+    <main class="container">
+
+        <!-- Seção de Contexto e Localização -->
+        <section class="card context-card">
+            <div class="section-header">
+                <span class="tag">Origem do Projeto</span>
+                <h2>Desenvolvimento Técnico: Centro WEG — Jaraguá do Sul, SC</h2>
+            </div>
+            <div class="context-grid">
+                <div class="context-text">
+                    <p>
+                        Este algoritmo foi concebido e desenvolvido nas dependências do <strong>Centro WEG</strong>, a unidade de formação profissional e educação tecnológica do <strong>SENAI</strong> integrada ao complexo industrial da WEG em <strong>Jaraguá do Sul, Santa Catarina</strong>.
+                    </p>
+                    <p>
+                        O ambiente une a prática direta da engenharia elétrica, automação e manufatura industrial com a lógica de programação moderna, simulando rotinas reais de controle de ativos e especificações técnicas de motores elétricos (como as linhas <em>WEG W22</em>).
+                    </p>
+                </div>
+                <div class="location-box">
+                    <h3>Ficha do Ambiente</h3>
+                    <ul>
+                        <li><strong>Instituição:</strong> SENAI / Centro WEG</li>
+                        <li><strong>Localidade:</strong> Jaraguá do Sul - SC, Brasil</li>
+                        <li><strong>Paradigma:</strong> Procedural / Modular via Funções</li>
+                        <li><strong>Persistência:</strong> Memória Volátil (Arrays/Listas)</li>
+                        <li><strong>Finalidade:</strong> Prototipagem Rápida & Testes de Lógica</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Arquitetura e Fluxo do Código -->
+        <section class="card">
+            <div class="section-header">
+                <span class="tag">Engenharia de Software</span>
+                <h2>Arquitetura e Funcionamento do Script</h2>
+            </div>
+            <p class="section-intro">
+                Para garantir simplicidade de execução em ambientes de teste sem necessidade de configurar servidores de banco de dados (SQL/NoSQL), o sistema foi estruturado de forma <strong>monolítica em arquivo único</strong>.
+            </p>
+
+            <div class="features-grid">
+                <article class="feature-item">
+                    <div class="feature-icon">01</div>
+                    <h3>Estrutura de Dados em Memória</h3>
+                    <p>
+                        Utiliza uma lista global chamada <code>motores = []</code> atuando como um array dinâmico. Cada motor cadastrado é encapsulado em um <strong>dicionário Python</strong> (chave-valor), facilitando o acesso rápido aos atributos técnicos: ID, Modelo, Potência (CV), Tensão (V), Rotação (RPM) e Número de Série.
+                    </p>
+                </article>
+
+                <article class="feature-item">
+                    <div class="feature-icon">02</div>
+                    <h3>Controle de ID Sequencial</h3>
+                    <p>
+                        A variável global <code>proximo_id</code> atua como uma chave primária auto-incremental. Mesmo que um registro seja removido da lista, o contador nunca retrocede, evitando colisões de identificação durante a sessão de testes.
+                    </p>
+                </article>
+
+                <article class="feature-item">
+                    <div class="feature-icon">03</div>
+                    <h3>Validação de Integridade</h3>
+                    <p>
+                        Antes de efetivar o <code>append()</code> na lista, a função <code>cadastrar_motor()</code> percorre os registros existentes comparando o número de série (em caixa baixa com <code>.lower()</code>), impedindo duplicidade de equipamentos.
+                    </p>
+                </article>
+
+                <article class="feature-item">
+                    <div class="feature-icon">04</div>
+                    <h3>Massa de Dados Pré-Carregada</h3>
+                    <p>
+                        Ao iniciar via <code>iniciar_sistema()</code>, o código injeta automaticamente dois motores padrão (um <em>WEG W22 IR3 Premium</em> e um <em>Siemens 1LE0</em>), permitindo validar imediatamente as rotinas de busca, listagem e exclusão.
+                    </p>
+                </article>
+            </div>
+        </section>
+
+        <!-- Detalhamento das Funções -->
+        <section class="card">
+            <div class="section-header">
+                <span class="tag">Mapeamento de Rotinas</span>
+                <h2>Detalhamento das Funções do Sistema</h2>
+            </div>
+
+            <div class="table-responsive">
+                <table class="tech-table">
+                    <thead>
+                        <tr>
+                            <th>Função</th>
+                            <th>Responsabilidade</th>
+                            <th>Recursos Python Utilizados</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>exibir_menu()</code></td>
+                            <td>Renderiza a interface CLI no terminal e captura a escolha do operador.</td>
+                            <td><code>print()</code>, <code>input()</code></td>
+                        </tr>
+                        <tr>
+                            <td><code>cadastrar_motor()</code></td>
+                            <td>Coleta especificações técnicas, valida unicidade do número de série e insere o dicionário no array.</td>
+                            <td><code>global</code>, <code>.strip()</code>, <code>.lower()</code>, <code>.append()</code></td>
+                        </tr>
+                        <tr>
+                            <td><code>listar_motores()</code></td>
+                            <td>Verifica se há itens na lista e imprime todos os motores formatados em linha única.</td>
+                            <td>Condicional <code>if not</code>, laço <code>for</code>, <em>f-strings</em></td>
+                        </tr>
+                        <tr>
+                            <td><code>buscar_motor()</code></td>
+                            <td>Realiza busca linear exata pelo número de série e exibe ficha técnica detalhada.</td>
+                            <td>Iteração sequencial, retorno antecipado (<code>return</code>)</td>
+                        </tr>
+                        <tr>
+                            <td><code>remover_motor()</code></td>
+                            <td>Localiza o índice pelo ID numérico e remove o elemento do array com tratamento de erro.</td>
+                            <td><code>try/except ValueError</code>, <code>enumerate()</code>, <code>.pop()</code></td>
+                        </tr>
+                        <tr>
+                            <td><code>iniciar_sistema()</code></td>
+                            <td>Popula dados iniciais de teste e mantém o loop principal de execução até a saída.</td>
+                            <td><code>.extend()</code>, loop infinito <code>while True</code></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Bloco de Código Fonte Completo -->
+        <section class="card code-section">
+            <div class="section-header">
+                <span class="tag">Implementação</span>
+                <h2>Código-Fonte Monolítico (<code>cadastro_motores.py</code>)</h2>
+            </div>
+            <p class="section-intro">
+                Código completo pronto para execução em qualquer terminal com Python 3 instalado, sem dependências externas.
+            </p>
+
+            <div class="code-window">
+                <div class="code-header">
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                    <span class="file-name">cadastro_motores.py</span>
+                </div>
+                <pre><code># Lista (array) principal para armazenar os dicionários de motores
+motores = []
+proximo_id = 1
+
+
+def exibir_menu():
+    print("\n=== SISTEMA DE CADASTRO DE MOTORES ===")
+    print("1. Cadastrar novo motor")
+    print("2. Listar todos os motores")
+    print("3. Buscar motor por número de série")
+    print("4. Remover motor por ID")
+    print("0. Sair")
+    return input("Escolha uma opção: ")
+
+
+def cadastrar_motor():
+    global proximo_id
+    print("\n--- Novo Cadastro ---")
+    modelo = input("Modelo do motor (ex: WEG W22): ").strip()
+    potencia = input("Potência em CV (ex: 5.0): ").strip()
+    tensao = input("Tensão nominal em V (ex: 220/380): ").strip()
+    rpm = input("Rotação em RPM (ex: 1750): ").strip()
+    num_serie = input("Número de série: ").strip()
+
+    # Verifica se o número de série já existe
+    for motor in motores:
+        if motor["num_serie"].lower() == num_serie.lower():
+            print("Erro: Já existe um motor cadastrado com este número de série!")
+            return
+
+    novo_motor = {
+        "id": proximo_id,
+        "modelo": modelo,
+        "potencia_cv": potencia,
+        "tensao_v": tensao,
+        "rpm": rpm,
+        "num_serie": num_serie,
+    }
+
+    motores.append(novo_motor)
+    proximo_id += 1
+    print(f"Motor '{modelo}' cadastrado com sucesso! (ID: {novo_motor['id']})")
+
+
+def listar_motores():
+    print("\n--- Motores Cadastrados ---")
+    if not motores:
+        print("Nenhum motor cadastrado no momento.")
+        return
+
+    for m in motores:
+        print(
+            f"ID: {m['id']} | Modelo: {m['modelo']} | Potência: {m['potencia_cv']} CV | "
+            f"Tensão: {m['tensao_v']} V | RPM: {m['rpm']} | Série: {m['num_serie']}"
+        )
+
+
+def buscar_motor():
+    print("\n--- Buscar Motor ---")
+    termo = input("Digite o número de série: ").strip().lower()
+
+    for m in motores:
+        if m["num_serie"].lower() == termo:
+            print("\nMotor encontrado:")
+            print(f"  ID: {m['id']}")
+            print(f"  Modelo: {m['modelo']}")
+            print(f"  Potência: {m['potencia_cv']} CV")
+            print(f"  Tensão: {m['tensao_v']} V")
+            print(f"  Rotação: {m['rpm']} RPM")
+            print(f"  Número de Série: {m['num_serie']}")
+            return
+
+    print("Nenhum motor encontrado com esse número de série.")
+
+
+def remover_motor():
+    print("\n--- Remover Motor ---")
+    if not motores:
+        print("A lista está vazia.")
+        return
+
+    try:
+        id_alvo = int(input("Digite o ID do motor que deseja remover: "))
+    except ValueError:
+        print("ID inválido. Digite apenas números.")
+        return
+
+    for i, m in enumerate(motores):
+        if m["id"] == id_alvo:
+            removido = motores.pop(i)
+            print(f"Motor '{removido['modelo']}' (ID {id_alvo}) removido com sucesso.")
+            return
+
+    print(f"Motor com ID {id_alvo} não encontrado.")
+
+
+def iniciar_sistema():
+    global proximo_id
+    motores.extend([
+        {
+            "id": 1,
+            "modelo": "WEG W22 IR3 Premium",
+            "potencia_cv": "10.0",
+            "tensao_v": "220/380",
+            "rpm": "1760",
+            "num_serie": "SN-1001",
+        },
+        {
+            "id": 2,
+            "modelo": "Siemens 1LE0",
+            "potencia_cv": "3.0",
+            "tensao_v": "380/660",
+            "rpm": "3500",
+            "num_serie": "SN-1002",
+        },
+    ])
+    proximo_id = 3
+
+    while True:
+        opcao = exibir_menu()
+
+        if opcao == "1":
+            cadastrar_motor()
+        elif opcao == "2":
+            listar_motores()
+        elif opcao == "3":
+            buscar_motor()
+        elif opcao == "4":
+            remover_motor()
+        elif opcao == "0":
+            print("Encerrando o sistema...")
+            break
+        else:
+            print("Opção inválida! Tente novamente.")
+
+
+if __name__ == "__main__":
+    iniciar_sistema()</code></pre>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Rodapé -->
+    <footer class="main-footer">
+        <div class="container footer-content">
+            <p><strong>Projeto Educacional & Técnico</strong> — Desenvolvido no <strong>Centro WEG (SENAI)</strong></p>
+            <p class="footer-sub">Jaraguá do Sul • Santa Catarina • Brasil</p>
+        </div>
+    </footer>
+
+</body>
+</html>

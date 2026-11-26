@@ -1,0 +1,392 @@
+/* ==========================================================================
+   PALETA DE CORES INSTITUCIONAL WEG & VARIÁVEIS GLOBAIS
+   ========================================================================== */
+:root {
+    --weg-blue: #00579D;         /* Azul principal WEG */
+    --weg-blue-dark: #003865;    /* Azul marinho profundo para contrastes e headers */
+    --weg-blue-light: #0088CC;   /* Azul ciano técnico para destaques e bordas */
+    --weg-blue-tint: #E6F0F8;    /* Fundo suave azulado para badges e seleções */
+    
+    --bg-page: #F2F5F8;          /* Cinza industrial claro para o fundo */
+    --bg-card: #FFFFFF;          /* Branco puro para cartões de conteúdo */
+    --text-primary: #1E293B;     /* Cinza chumbo escuro para leitura confortável */
+    --text-secondary: #475569;   /* Cinza médio para subtítulos e descrições */
+    --border-color: #CBD5E1;     /* Borda sutil estrutural */
+    
+    --code-bg: #0F172A;          /* Fundo escuro estilo IDE para bloco Python */
+    --code-header: #1E293B;      /* Barra superior do editor de código */
+    --code-text: #E2E8F0;        /* Texto claro do código */
+
+    --shadow-sm: 0 2px 6px rgba(0, 56, 101, 0.06);
+    --shadow-md: 0 8px 20px rgba(0, 56, 101, 0.10);
+    --radius: 8px;
+}
+
+/* ==========================================================================
+   RESET E TIPOGRAFIA BASE
+   ========================================================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background-color: var(--bg-page);
+    color: var(--text-primary);
+    line-height: 1.65;
+    font-size: 16px;
+}
+
+.container {
+    width: 100%;
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+code {
+    font-family: 'Fira Code', monospace;
+    background-color: var(--weg-blue-tint);
+    color: var(--weg-blue-dark);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.9em;
+    font-weight: 500;
+}
+
+/* ==========================================================================
+   CABEÇALHO (HEADER)
+   ========================================================================== */
+.main-header {
+    background: linear-gradient(135deg, var(--weg-blue-dark) 0%, var(--weg-blue) 100%);
+    color: #FFFFFF;
+    padding: 56px 0 64px;
+    border-bottom: 5px solid var(--weg-blue-light);
+    margin-bottom: -24px;
+}
+
+.brand-badge {
+    display: inline-flex;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    padding: 6px 14px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+}
+
+.weg-logo {
+    font-weight: 700;
+    font-size: 1.15rem;
+    letter-spacing: 1.5px;
+    color: #FFFFFF;
+}
+
+.divider {
+    margin: 0 12px;
+    opacity: 0.5;
+}
+
+.senai-tag {
+    font-weight: 600;
+    color: #BAE6FD;
+}
+
+.main-header h1 {
+    font-size: 2.35rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 12px;
+    letter-spacing: -0.5px;
+}
+
+.subtitle {
+    font-size: 1.1rem;
+    color: #E0F2FE;
+    max-width: 720px;
+    font-weight: 300;
+}
+
+/* ==========================================================================
+   CARTÕES E SEÇÕES
+   ========================================================================== */
+.card {
+    background-color: var(--bg-card);
+    border-radius: var(--radius);
+    padding: 36px;
+    margin-bottom: 28px;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border-color);
+}
+
+.context-card {
+    border-top: 4px solid var(--weg-blue);
+    box-shadow: var(--shadow-md);
+}
+
+.section-header {
+    margin-bottom: 20px;
+}
+
+.tag {
+    display: inline-block;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: var(--weg-blue);
+    background-color: var(--weg-blue-tint);
+    padding: 4px 10px;
+    border-radius: 4px;
+    margin-bottom: 8px;
+}
+
+.section-header h2 {
+    font-size: 1.55rem;
+    color: var(--weg-blue-dark);
+    font-weight: 700;
+}
+
+.section-intro {
+    color: var(--text-secondary);
+    margin-bottom: 24px;
+}
+
+/* ==========================================================================
+   GRID DE CONTEXTO (CENTRO WEG / JARAGUÁ DO SUL)
+   ========================================================================== */
+.context-grid {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr;
+    gap: 32px;
+    align-items: start;
+}
+
+.context-text p {
+    margin-bottom: 16px;
+    color: var(--text-primary);
+}
+
+.context-text p:last-child {
+    margin-bottom: 0;
+}
+
+.location-box {
+    background-color: var(--bg-page);
+    border-left: 4px solid var(--weg-blue-light);
+    padding: 22px;
+    border-radius: 6px;
+}
+
+.location-box h3 {
+    font-size: 1.05rem;
+    color: var(--weg-blue-dark);
+    margin-bottom: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.location-box ul {
+    list-style: none;
+}
+
+.location-box li {
+    padding: 7px 0;
+    border-bottom: 1px solid var(--border-color);
+    font-size: 0.92rem;
+    color: var(--text-secondary);
+}
+
+.location-box li:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.location-box strong {
+    color: var(--text-primary);
+}
+
+/* ==========================================================================
+   GRID DE ARQUITETURA (4 CARDS INTERNOS)
+   ========================================================================== */
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+}
+
+.feature-item {
+    background-color: #F8FAFC;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    padding: 24px;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.feature-item:hover {
+    transform: translateY(-3px);
+    border-color: var(--weg-blue-light);
+}
+
+.feature-icon {
+    display: inline-block;
+    font-family: 'Fira Code', monospace;
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: #FFFFFF;
+    background-color: var(--weg-blue);
+    padding: 4px 10px;
+    border-radius: 4px;
+    margin-bottom: 12px;
+}
+
+.feature-item h3 {
+    font-size: 1.15rem;
+    color: var(--weg-blue-dark);
+    margin-bottom: 10px;
+}
+
+.feature-item p {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+}
+
+/* ==========================================================================
+   TABELA TÉCNICA DE FUNÇÕES
+   ========================================================================== */
+.table-responsive {
+    overflow-x: auto;
+}
+
+.tech-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    font-size: 0.95rem;
+}
+
+.tech-table thead {
+    background-color: var(--weg-blue);
+    color: #FFFFFF;
+}
+
+.tech-table th {
+    padding: 14px 16px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+}
+
+.tech-table td {
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--border-color);
+    color: var(--text-primary);
+}
+
+.tech-table tbody tr:nth-child(even) {
+    background-color: #F8FAFC;
+}
+
+.tech-table tbody tr:hover {
+    background-color: var(--weg-blue-tint);
+}
+
+/* ==========================================================================
+   BLOCO DE CÓDIGO PYTHON (ESTILO TERMINAL/IDE)
+   ========================================================================== */
+.code-window {
+    background-color: var(--code-bg);
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    border: 1px solid #334155;
+}
+
+.code-header {
+    background-color: var(--code-header);
+    padding: 12px 18px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #334155;
+}
+
+.dot {
+    height: 11px;
+    width: 11px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 7px;
+    background-color: #475569;
+}
+
+.dot:nth-child(1) { background-color: #EF4444; }
+.dot:nth-child(2) { background-color: #F59E0B; }
+.dot:nth-child(3) { background-color: #10B981; }
+
+.file-name {
+    margin-left: 10px;
+    font-family: 'Fira Code', monospace;
+    font-size: 0.85rem;
+    color: #94A3B8;
+}
+
+.code-window pre {
+    padding: 24px;
+    overflow-x: auto;
+    margin: 0;
+}
+
+.code-window pre code {
+    background: none;
+    color: var(--code-text);
+    padding: 0;
+    font-size: 0.88rem;
+    line-height: 1.6;
+    font-weight: 400;
+}
+
+/* ==========================================================================
+   RODAPÉ (FOOTER)
+   ========================================================================== */
+.main-footer {
+    background-color: var(--weg-blue-dark);
+    color: #E2E8F0;
+    padding: 32px 0;
+    margin-top: 48px;
+    text-align: center;
+    border-top: 4px solid var(--weg-blue);
+}
+
+.footer-content p {
+    font-size: 0.95rem;
+}
+
+.footer-sub {
+    font-size: 0.85rem;
+    color: #93C5FD;
+    margin-top: 6px;
+}
+
+/* ==========================================================================
+   RESPONSIVIDADE (TABLETS E CELULARES)
+   ========================================================================== */
+@media (max-width: 860px) {
+    .context-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .features-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .main-header h1 {
+        font-size: 1.85rem;
+    }
+
+    .card {
+        padding: 24px;
+    }
+}
